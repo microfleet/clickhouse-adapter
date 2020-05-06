@@ -1,0 +1,78 @@
+{
+  "name": "clickhouse-adapter",
+  "version": "0.0.0",
+  "description": "ClickHouse Adapter",
+  "private": true,
+  "workspaces": [
+    "packages/**/*",
+    "test"
+  ],
+  "scripts": {
+    "commit": "git-cz",
+    "clean": "lerna run clean",
+    "compile": "yarn clean && lerna run compile",
+    "lint": "tslint -t stylish --project \"tsconfig.json\"",
+    "typecheck": "lerna run typecheck",
+    "format": "prettier \"**/*.ts\" --write && git status",
+    "test": "yarn compile && lerna run test --stream",
+    "docker-release": "mdep docker release",
+    "semantic-release": "lerna publish --conventional-commits --create-release=github --yes",
+    "release": "yarn --frozen-lockfile && yarn semantic-release",
+    "prepublishOnly": "yarn compile"
+  },
+  "keywords": [
+    "clickhouse",
+    "adapter",
+    "client"
+  ],
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "common-errors": "^1.0.5",
+    "cross-spawn": "^7.0.1",
+    "ms-conf": "^6.0.0",
+    "ms-validation": "^7.2.0"
+  },
+  "devDependencies": {
+    "@makeomatic/deploy": "^10.1.1",
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.0.2",
+    "@semantic-release/npm": "^7.0.2",
+    "@types/bluebird": "^3.5.29",
+    "@types/common-errors": "^1.0.1",
+    "@types/jest": "^25.1.1",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^13.7.0",
+    "commitizen": "^4.0.3",
+    "cross-env": "^7.0.0",
+    "cz-lerna-changelog": "^2.0.2",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "lerna": "^3.20.2",
+    "nock": "^11.7.2",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.1",
+    "sinon": "^8.1.1",
+    "source-map-support": "^0.5.16",
+    "ts-jest": "^25.1.0",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "tslint-config-blvd": "^1.2.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.1.0",
+    "typescript": "3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn typecheck",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "./node_modules/@makeomatic/deploy/git-hooks/prepare-commit-msg $HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-lerna-changelog"
+    }
+  }
+}

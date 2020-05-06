@@ -1,0 +1,21 @@
+version: '3.0'
+
+services:
+  clickhouse:
+    image: yandex/clickhouse-server
+    hostname: clickhouse
+
+  clickhouse-adapter:
+    links:
+      - clickhouse
+    image: makeomatic/node
+    container_name: clickhouse_adapter
+    volumes:
+      - ${PWD}/test/configs:/configs:ro
+    environment:
+      NODE_ENV: production
+      DEBUG: '*'
+
+  tester:
+    depends_on:
+      - clickhouse-adapter

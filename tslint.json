@@ -1,0 +1,46 @@
+{
+  "extends": ["tslint-config-blvd", "tslint-config-prettier"],
+  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
+  "rules": {
+    "mocha-no-side-effect-code": false,
+    "missing-jsdoc": false,
+    "no-relative-imports": false,
+    "export-name": false,
+    "promise-function-async": false,
+    "no-void-expression": false,
+    "no-redundant-jsdoc": false,
+    "prefer-type-cast": false,
+    "typedef": [true, "parameter", "arrow-parameter", "property-declaration", "member-variable-declaration"],
+    "no-submodule-imports": false,
+    "no-require-imports": false,
+    "ordered-imports": false,
+    "import-name": false,
+    "interface-name": false,
+    "max-line-length": false,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "arrays": "always",
+          "exports": "always",
+          "functions": "ignore",
+          "imports": "always",
+          "objects": "always",
+          "typeLiterals": "never"
+        },
+        "singleline": "never"
+      }
+    ],
+    "no-backbone-get-set-outside-model": false,
+    "no-any": false,
+    "no-null-keyword": false,
+    "no-reserved-keywords": false,
+    "no-typeof-undefined": false,
+    "no-return-await": false,
+    "semicolon": [true, "never"],
+    "align": false,
+    "prefer-array-literal": false,
+    "array-type": [true, "array-simple"],
+    "no-this-assignment": [true, { "allow-destructuring": true }]
+  }
+}
