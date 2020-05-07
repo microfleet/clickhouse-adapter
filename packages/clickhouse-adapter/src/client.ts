@@ -1,7 +1,12 @@
 import ClickHouse from '@apla/clickhouse'
 import { Promise } from 'bluebird'
 import { merge } from 'lodash'
-import { InsertData, ClickhouseOptions, TableBuilder, ClickhouseClientInterface } from './interfaces'
+import {
+  InsertData,
+  ClickhouseOptions,
+  TableBuilder,
+  ClickhouseClientInterface,
+} from './interfaces'
 
 export class ClickhouseClient implements ClickhouseClientInterface {
   public static readonly defaultOpts: ClickhouseOptions = {
@@ -18,11 +23,11 @@ export class ClickhouseClient implements ClickhouseClientInterface {
     this.connection = new ClickHouse(merge({}, ClickhouseClient.defaultOpts, options))
   }
 
-  public async createTable(builder: TableBuilder) {
+  public async createTable(builder: TableBuilder): Promise<any> {
     return this.connection.querying(builder.toSql(), { format: 'JSONEachRow' })
   }
 
-  public insert(dbName: string, insertData: InsertData, cb: (err: any, result: any) => void) {
+  public insert(dbName: string, insertData: InsertData, cb: (err: any, result: any) => void): void {
     const stream = this.connection.query(
       insertData.query(),
       { format: 'JSONEachRow', queryOptions: { database: dbName } },
@@ -38,11 +43,11 @@ export class ClickhouseClient implements ClickhouseClientInterface {
     stream.end()
   }
 
-  public query(dbName: string, query: string, cb: (err: any, result: any) => void) {
+  public query(dbName: string, query: string, cb: (err: any, result: any) => void): void {
     this.connection.query(query, { syncParser: true, queryOptions: { database: dbName } }, cb)
   }
 
-  public queryAsync(dbName: string, query: string) {
+  public queryAsync(dbName: string, query: string): Promise<any> {
     return Promise.promisify(this.query, { context: this })(dbName, query)
   }
 }

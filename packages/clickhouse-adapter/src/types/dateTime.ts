@@ -5,7 +5,7 @@ export class DateTime {
     this.value = `DateTime('${timeZone}')`
   }
 
-  public toString() {
+  public toString(): string {
     return this.value
   }
 }

@@ -30,7 +30,6 @@ describe('Table maker', () => {
       trackTimestamp DateTime('Europe/Moscow'),
       event_type String
       ) ENGINE = MergeTree(trackDate, (event_type), 8192)
-
       "
     `)
   })

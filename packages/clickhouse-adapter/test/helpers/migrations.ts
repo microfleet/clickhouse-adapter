@@ -1,10 +1,10 @@
 import { ClickhouseClient, SystemMigrator, TableMaker } from '../../src'
 import { Migration } from '../../src/interfaces'
 
-export const initSystemMigrator: (ch: ClickhouseClient, dbName: string) => Promise<SystemMigrator> = async (
+export const initSystemMigrator: (
   ch: ClickhouseClient,
   dbName: string
-) => {
+) => Promise<SystemMigrator> = async (ch: ClickhouseClient, dbName: string) => {
   const migrator = new SystemMigrator(ch)
   await migrator.up(dbName)
 

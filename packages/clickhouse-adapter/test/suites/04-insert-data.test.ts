@@ -22,9 +22,9 @@ describe('Clickhouse Adapter', () => {
             columnDefinitions: [
               { name: 'trackDate', type: 'Date' },
               { name: 'trackTimestamp', type: 'DateTime' },
-              { name: 'event_type', type: 'String' },
+              { name: 'eventType', type: 'String' },
             ],
-            tableOptions: ['ENGINE = MergeTree(trackDate, (trackTimestamp, event_type), 8192)'],
+            tableOptions: ['ENGINE = MergeTree(trackDate, (trackTimestamp, eventType), 8192)'],
           })
         )
         return true
@@ -43,7 +43,7 @@ describe('Clickhouse Adapter', () => {
           {
             trackDate: moment(now).format('YYYY-MM-DD'),
             trackTimestamp: moment(now).format('YYYY-MM-DD HH:mm:ss'),
-            event_type: 'type_a',
+            eventType: 'type_a',
           },
         ]
       },

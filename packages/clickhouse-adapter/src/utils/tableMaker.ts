@@ -19,7 +19,12 @@ export class TableMaker implements TableBuilder {
 
   private tableOptions: string[] = []
 
-  constructor(dbName: string, tableName: string, clusterName: string | null = null, spec?: TableSpec) {
+  constructor(
+    dbName: string,
+    tableName: string,
+    clusterName: string | null = null,
+    spec?: TableSpec
+  ) {
     this.tableName = tableName
     this.dbName = dbName
     this.clusterName = clusterName
@@ -54,11 +59,11 @@ export class TableMaker implements TableBuilder {
     ].join('\n')
   }
 
-  private setupCluster(cluster: string) {
+  private setupCluster(cluster: string): void {
     this.head.push(`${ON_CLUSTER} ${cluster}`.trim())
   }
 
-  private defineColumns(columnDefinitions: Column[] | undefined) {
+  private defineColumns(columnDefinitions: Column[] | undefined): void {
     columnDefinitions?.forEach((c: Column) => this.columnDefinition(c.name, c.type, c.options))
   }
 }

@@ -15,7 +15,7 @@ export class Migrator {
     return this.migrations
   }
 
-  public up(callback: (migrator: Migrator) => Promise<any>) {
+  public up(callback: (migrator: Migrator) => Promise<any>): Promise<any> {
     return callback(this)
   }
 
@@ -25,7 +25,7 @@ export class Migrator {
     }
   }
 
-  public addMigration(migration: Migration) {
+  public addMigration(migration: Migration): void {
     this.migrations.push(migration)
   }
 
@@ -38,13 +38,13 @@ export class Migrator {
     }
   }
 
-  private async saveMigrationResult(dbName: string, migrationName: string) {
+  private async saveMigrationResult(dbName: string, migrationName: string): Promise<any> {
     return this.ch.connection.querying(
       SqlString.format('INSERT INTO ?? (name) VALUES(?)', [`${dbName}.migrations`, migrationName])
     )
   }
 
-  private async isExistsMigration(dbName: string, migrationName: string) {
+  private async isExistsMigration(dbName: string, migrationName: string): Promise<boolean> {
     const result = await this.ch.connection.querying(
       SqlString.format('SELECT * FROM ?? WHERE name = ?', [`${dbName}.migrations`, migrationName]),
       { format: 'JSON' }
