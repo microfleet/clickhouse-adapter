@@ -1,0 +1,44 @@
+name: Checks
+
+on:
+  pull_request:
+    paths:
+      - '*'
+      - '*/*'
+      - '*/*/*'
+      - '*/*/*/*'
+      - '*/*/*/*/*'
+      - '*/*/*/*/*/*'
+      - '*/*/*/*/*/*/*'
+      - '*/*/*/*/*/*/*/*'
+      - '*/*/*/*/*/*/*/*/*'
+      - '*/*/*/*/*/*/*/*/*/*'
+
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install
+        run: yarn install
+
+      - name: TypeCheck
+        run: |
+          yarn typecheck
+
+      - name: Lint
+        run: |
+          yarn lint
+
+      - name: Test
+        run: |
+          yarn test
