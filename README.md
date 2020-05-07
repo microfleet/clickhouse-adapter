@@ -1,3 +1,3 @@
 # clickhouse-adapter
 
-Clickhouse Adapter
+ClickHouse Adapter
