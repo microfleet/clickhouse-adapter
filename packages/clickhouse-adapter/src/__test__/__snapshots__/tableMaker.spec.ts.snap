@@ -9,3 +9,13 @@ event_type String
 
 "
 `;
+
+exports[`Table maker create table by spec 1`] = `
+"CREATE TABLE IF NOT EXISTS ch_test.table_test (
+trackDate Date,
+trackTimestamp DateTime('Europe/Moscow'),
+event_type String
+) ENGINE = MergeTree(trackDate, (event_type), 8192)
+
+"
+`;

@@ -24,13 +24,6 @@ describe('Table maker', () => {
       tableOptions: ['ENGINE = MergeTree(trackDate, (event_type), 8192)'],
     })
 
-    expect(maker.toSql()).toMatchInlineSnapshot(`
-      "CREATE TABLE IF NOT EXISTS ch_test.table_test (
-      trackDate Date,
-      trackTimestamp DateTime('Europe/Moscow'),
-      event_type String
-      ) ENGINE = MergeTree(trackDate, (event_type), 8192)
-      "
-    `)
+    expect(maker.toSql()).toMatchSnapshot()
   })
 })
