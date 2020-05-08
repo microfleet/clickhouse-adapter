@@ -16,6 +16,7 @@ module.exports = {
     'class-methods-use-this': 0,
     'import/no-cycle': 0,
     'import/no-duplicates': 0,
+    'import/no-unresolved': 0,
     'import/prefer-default-export': 0,
     '@typescript-eslint/semi': 0,
     '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
