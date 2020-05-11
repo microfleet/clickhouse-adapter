@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.build.json",
-  "include": ["backend/**/**/*", "test/**/*"],
+  "include": ["packages/**/*", "test/**/*"],
   "compilerOptions": {
     "strictPropertyInitialization": false,
     "importHelpers": true,

@@ -1,7 +1,7 @@
 {
   "name": "@microfleet/clickhouse-adapter",
   "main": "dist/index",
-  "typings": "src/index.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -25,5 +25,10 @@
   "devDependencies": {
     "@types/lodash": "^4.14.149",
     "@types/sqlstring": "^2.2.1"
+  },
+  "publishConfig": {
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "access": "public"
   }
 }
