@@ -12,22 +12,17 @@
     "compile": "yarn clean && lerna run compile",
     "lint": "eslint . --ext .ts",
     "typecheck": "lerna run typecheck",
+    "pretypecheck": "yarn compile",
     "format": "prettier \"**/*.ts\" --write && git status",
     "test": "yarn compile && lerna run test --stream",
-    "prepublishOnly": "yarn compile"
+    "prepublishOnly": "yarn compile",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "clickhouse",
     "adapter",
     "client"
   ],
-  "dependencies": {
-    "bluebird": "^3.7.2",
-    "common-errors": "^1.0.5",
-    "cross-spawn": "^7.0.1",
-    "ms-conf": "^6.0.0",
-    "ms-validation": "^7.2.0"
-  },
   "devDependencies": {
     "@makeomatic/deploy": "^10.1.1",
     "@semantic-release/changelog": "^5.0.0",
@@ -36,7 +31,6 @@
     "@semantic-release/github": "^7.0.2",
     "@semantic-release/npm": "^7.0.2",
     "@types/bluebird": "^3.5.29",
-    "@types/common-errors": "^1.0.1",
     "@types/jest": "^25.1.1",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.0",
@@ -53,12 +47,9 @@
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "lerna": "^3.20.2",
-    "nock": "^11.7.2",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
     "rimraf": "^3.0.1",
-    "sinon": "^8.1.1",
-    "source-map-support": "^0.5.16",
     "ts-jest": "^25.1.0",
     "ts-node": "^8.6.2",
     "typescript": "3.7.5"
