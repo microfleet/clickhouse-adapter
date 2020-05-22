@@ -10,7 +10,6 @@ export interface ClickhouseOptions {
   readonly port?: number
   readonly protocol?: 'https:' | 'http:'
   readonly dataObjects?: boolean
-  readonly isUseGzip?: boolean
   readonly format?: Formats
   readonly queryOptions?: any
   readonly readonly?: boolean
