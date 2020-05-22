@@ -19,8 +19,12 @@ export class ClickhouseClient implements ClickhouseClientInterface {
 
   public readonly connection: ClickHouse
 
+  public readonly queryAsync: (dbName: string, query: string) => Promise<any>
+
   constructor(options: ClickhouseOptions) {
     this.connection = new ClickHouse(merge({}, ClickhouseClient.defaultOpts, options))
+
+    this.queryAsync = Promise.promisify(this.query, { context: this })
   }
 
   public async createTable(builder: TableBuilder): Promise<any> {
@@ -45,9 +49,5 @@ export class ClickhouseClient implements ClickhouseClientInterface {
 
   public query(dbName: string, query: string, cb: (err: any, result: any) => void): void {
     this.connection.query(query, { syncParser: true, queryOptions: { database: dbName } }, cb)
-  }
-
-  public queryAsync(dbName: string, query: string): Promise<any> {
-    return Promise.promisify(this.query, { context: this })(dbName, query)
   }
 }
