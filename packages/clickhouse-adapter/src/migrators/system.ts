@@ -1,12 +1,7 @@
 import { ClickhouseClient } from '../client'
+import { TableMaker } from '../utils'
 
 const createDb = (dbName: string): string => `CREATE DATABASE IF NOT EXISTS ${dbName}`
-const createMigrationTable = (
-  dbName: string
-): string => `CREATE TABLE IF NOT EXISTS ${dbName}.migrations (
-  name String,
-  migrated_at Date DEFAULT now()
-) ENGINE = MergeTree(migrated_at, name, 8192);`
 
 export class SystemMigrator {
   private readonly ch: ClickhouseClient
@@ -17,6 +12,15 @@ export class SystemMigrator {
 
   public async up(dbName: string): Promise<void> {
     await this.ch.connection.querying(createDb(dbName))
-    await this.ch.connection.querying(createMigrationTable(dbName))
+
+    const migrationTable = new TableMaker(dbName, 'migrations', null, {
+      columnDefinitions: [
+        { name: 'name', type: 'String' },
+        { name: 'migrated_at', type: 'Date', options: ['DEFAULT now()'] },
+      ],
+      tableOptions: ['ENGINE = MergeTree(migrated_at, name, 8192)'],
+    })
+
+    await this.ch.queryAsync(dbName, migrationTable.toSql())
   }
 }
