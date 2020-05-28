@@ -1,0 +1,34 @@
+{
+  "name": "@microfleet/clickhouse-adapter",
+  "main": "dist/index",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "compile": "tsc -p tsconfig.build.json",
+    "test": "yarn test:unit && yarn test:e2e",
+    "test:unit": "TS_NODE_TRANSPILE_ONLY=true jest --verbose -i -b -c ../../jest.config.js ./src",
+    "test:e2e": "mdep test run",
+    "clean": "rimraf ./dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@apla/clickhouse": "1.6.2",
+    "lodash": "4.17.15",
+    "moment": "2.24.0",
+    "sqlstring": "2.3.2",
+    "bluebird": "3.7.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/sqlstring": "^2.2.1"
+  },
+  "publishConfig": {
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "access": "public"
+  }
+}
