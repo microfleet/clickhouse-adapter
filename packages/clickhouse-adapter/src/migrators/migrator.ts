@@ -21,7 +21,11 @@ export class Migrator {
 
   public migrateAll(dbName: string) {
     return (migrator: Migrator) => {
-      return Promise.all(migrator.migrationList().map(migrator.migrate(dbName), migrator))
+      const migrations = migrator.migrationList()
+
+      return migrations.reduce(async (_: any, migration: Migration) => {
+        await migrator.migrate(dbName)(migration)
+      }, Promise.resolve())
     }
   }
 
