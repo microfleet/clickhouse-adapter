@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table maker create table by fluent API 1`] = `
+"CREATE TABLE IF NOT EXISTS ch_test.table_test (
+trackDate Date,
+trackTimestamp DateTime,
+event_type String
+) ENGINE = MergeTree(trackDate, (event_type), 8192)
+
+"
+`;
+
+exports[`Table maker create table by spec 1`] = `
+"CREATE TABLE IF NOT EXISTS ch_test.table_test (
+trackDate Date,
+trackTimestamp DateTime('Europe/Moscow'),
+event_type String
+) ENGINE = MergeTree(trackDate, (event_type), 8192)
+
+"
+`;

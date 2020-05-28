@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.build.json",
+  "include": ["packages/**/*", "test/**/*"],
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "importHelpers": true,
+    "baseUrl": ".",
+    "paths": {
+      "@microfleet/root-test": ["test"]
+    }
+  }
+}

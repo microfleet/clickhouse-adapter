@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "commonjs",
+    "lib": ["ES2019"],
+    "declaration": true,
+    "declarationMap": true,
+    "noFallthroughCasesInSwitch": false,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": false,
+
+    "strict": false,
+    "strictBindCallApply": false,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+    "stripInternal": false,
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+
+    "baseUrl": "./packages",
+    "paths": {
+      "@microfleet/*": ["./packages/*/src"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
