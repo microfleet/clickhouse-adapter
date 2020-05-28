@@ -23,8 +23,8 @@
     "sqlstring": "2.3.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.149",
-    "@types/sqlstring": "^2.2.1"
+    "@types/lodash": "4.14.150",
+    "@types/sqlstring": "2.2.1"
   },
   "publishConfig": {
     "main": "dist/index.js",
