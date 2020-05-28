@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.1.0...@microfleet/clickhouse-adapter@0.1.1) (2020-05-28)
+
+
+### Bug Fixes
+
+* **clickhouse-adapter:** make sequential migration ([324c88f](https://github.com/microfleet/clickhouse-adapter/commit/324c88f0dacc2d6f5dd02e7e9a527142d8a32e50))
+
+
+
+
+
 # 0.1.0 (2020-05-28)
 
 
