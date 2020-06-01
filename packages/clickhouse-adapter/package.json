@@ -1,11 +1,13 @@
 {
   "name": "@microfleet/clickhouse-adapter",
+  "license": "MIT",
+  "repository": "git@github.com:microfleet/clickhouse-adapter.git",
   "main": "dist/index",
+  "source": "src/index.ts",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "private": true,
   "version": "0.1.2",
   "scripts": {
     "compile": "tsc -p tsconfig.build.json",
@@ -27,8 +29,6 @@
     "@types/sqlstring": "2.2.1"
   },
   "publishConfig": {
-    "main": "dist/index.js",
-    "typings": "dist/index.d.ts",
     "access": "public"
   }
 }
