@@ -1,4 +1,5 @@
 import SqlString from 'sqlstring'
+import { Promise } from 'bluebird'
 import { ClickhouseClient } from '../client'
 import { Migration } from '../interfaces'
 
@@ -23,9 +24,9 @@ export class Migrator {
     return (migrator: Migrator) => {
       const migrations = migrator.migrationList()
 
-      return migrations.reduce(async (_: any, migration: Migration) => {
-        await migrator.migrate(dbName)(migration)
-      }, Promise.resolve())
+      return Promise.each(migrations, (migration: Migration) => {
+        return migrator.migrate(dbName)(migration)
+      })
     }
   }
 
