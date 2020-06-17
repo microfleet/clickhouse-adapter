@@ -1,13 +1,40 @@
 version: '3.0'
 
 services:
-  clickhouse:
+  zookeeper:
+    image: zookeeper
+    ports:
+      - "2181:2181"
+      - "2182:2182"
+
+  ch1:
     image: yandex/clickhouse-server
-    hostname: clickhouse
+    depends_on:
+      - zookeeper
+    ports:
+      - 8811:8123
+      - 9011:9000
+    volumes:
+      - "${PWD}/test/configs/include_from.xml:/etc/clickhouse-server/include_from.xml"
+      - "${PWD}/test/configs/users.xml:/etc/clickhouse-server/users.xml"
+      - "${PWD}/test/configs/config_ch_1.xml:/etc/clickhouse-server/conf.d/config.xml"
+
+  ch2:
+    image: yandex/clickhouse-server
+    depends_on:
+      - zookeeper
+    ports:
+      - 8812:8123
+      - 9012:9000
+    volumes:
+      - "${PWD}/test/configs/include_from.xml:/etc/clickhouse-server/include_from.xml"
+      - "${PWD}/test/configs/users.xml:/etc/clickhouse-server/users.xml"
+      - "${PWD}/test/configs/config_ch_2.xml:/etc/clickhouse-server/conf.d/config.xml"
 
   clickhouse-adapter:
     links:
-      - clickhouse
+      - ch1
+      - ch2
     image: makeomatic/node
     container_name: clickhouse_adapter
     volumes:

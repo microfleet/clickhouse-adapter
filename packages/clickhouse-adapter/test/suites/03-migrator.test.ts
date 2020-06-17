@@ -6,7 +6,7 @@ import { migrations } from '../helpers'
 const DB_NAME = 'db_test'
 
 describe('Migrator', () => {
-  const ch = new ClickhouseClient({ dbName: DB_NAME, host: 'clickhouse' })
+  const ch = new ClickhouseClient({ dbName: DB_NAME, host: 'ch1' })
   const systemMigrator = new SystemMigrator(ch)
 
   beforeAll(() => systemMigrator.up(DB_NAME))

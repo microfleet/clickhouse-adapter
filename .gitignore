@@ -45,3 +45,6 @@ tsconfig.build.tsbuildinfo
 .env.development.local
 .env.test.local
 .env.production.local
+
+# config files ClickHouse
+!**/test/configs/*.xml

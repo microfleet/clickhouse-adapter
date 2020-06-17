@@ -4,7 +4,7 @@ import { ClickhouseClient, TableMaker } from '../../src'
 describe('create table', () => {
   it('create table', async () => {
     const client = new ClickhouseClient({
-      host: 'clickhouse',
+      host: 'ch1',
     })
 
     await client.connection.querying('CREATE DATABASE IF NOT EXISTS db_test')

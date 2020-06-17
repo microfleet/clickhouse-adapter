@@ -18,7 +18,11 @@ export class SystemMigrator {
         { name: 'name', type: 'String' },
         { name: 'migrated_at', type: 'Date', options: ['DEFAULT now()'] },
       ],
-      tableOptions: ['ENGINE = MergeTree(migrated_at, name, 8192)'],
+      tableOptions: [
+        `ENGINE = ReplicatedMergeTree('/clickhouse/tables/{layer}-{shard}/migrations', '{replica}')`,
+        'PARTITION BY toYYYYMM(migrated_at)',
+        'ORDER BY (migrated_at)',
+      ],
     })
 
     await this.ch.queryAsync(dbName, migrationTable.toSql())
