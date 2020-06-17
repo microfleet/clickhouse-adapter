@@ -6,7 +6,7 @@ const DB_NAME = 'db_test'
 
 describe('System Migrator', () => {
   const ch = new ClickhouseClient({
-    host: 'clickhouse',
+    host: 'ch1',
   })
 
   beforeAll(() => initSystemMigrator(ch, DB_NAME))

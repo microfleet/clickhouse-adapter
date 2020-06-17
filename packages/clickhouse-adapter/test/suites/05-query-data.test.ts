@@ -6,7 +6,7 @@ import { InsertData } from '../../src/interfaces'
 const DB_NAME = 'db_test'
 
 describe('Clickhouse Adapter', () => {
-  const ch = new ClickhouseClient({ host: 'clickhouse', dbName: DB_NAME })
+  const ch = new ClickhouseClient({ host: 'ch1', dbName: DB_NAME })
   const systemMigrator = new SystemMigrator(ch)
 
   beforeAll(() => systemMigrator.up(DB_NAME))
