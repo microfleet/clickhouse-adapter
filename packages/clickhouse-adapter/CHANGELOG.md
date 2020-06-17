@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.1.4...@microfleet/clickhouse-adapter@0.2.0) (2020-06-17)
+
+
+### Features
+
+* switch to cluster mode ([ef664d3](https://github.com/microfleet/clickhouse-adapter/commit/ef664d37cf4e265ddafa59088e4bd5c3ec7e1905))
+
+
+
+
+
 ## [0.1.4](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.1.3...@microfleet/clickhouse-adapter@0.1.4) (2020-06-01)
 
 **Note:** Version bump only for package @microfleet/clickhouse-adapter
