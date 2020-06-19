@@ -13,7 +13,9 @@ describe('System Migrator', () => {
 
   it('create migration table', async () => {
     const describeTableQuery = queries.describeTable(DB_NAME, 'migrations')
-    const tableInfo: { data: StructureTable[] } = await ch.connection.querying(describeTableQuery)
+    const tableInfo: { data: StructureTable[] } = await ch.queryAsync(describeTableQuery, {
+      format: 'JSON',
+    })
 
     const fields = tableInfo.data.map((item: StructureTable) => item.name)
 

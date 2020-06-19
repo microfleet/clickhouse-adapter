@@ -1,7 +1,8 @@
 import { ClickhouseClient } from '../client'
 import { TableMaker } from '../utils'
 
-const createDb = (dbName: string): string => `CREATE DATABASE IF NOT EXISTS ${dbName}`
+const createDb = (dbName: string): string =>
+  `CREATE DATABASE IF NOT EXISTS ${dbName} ON CLUSTER '{cluster}'`
 
 export class SystemMigrator {
   private readonly ch: ClickhouseClient
@@ -11,7 +12,9 @@ export class SystemMigrator {
   }
 
   public async up(dbName: string): Promise<void> {
-    await this.ch.connection.querying(createDb(dbName))
+    await this.ch.queryAsync(createDb(dbName), {
+      format: 'TabSeparated',
+    })
 
     const migrationTable = new TableMaker(dbName, 'migrations', null, {
       columnDefinitions: [
@@ -19,12 +22,15 @@ export class SystemMigrator {
         { name: 'migrated_at', type: 'Date', options: ['DEFAULT now()'] },
       ],
       tableOptions: [
-        `ENGINE = ReplicatedMergeTree('/clickhouse/tables/{layer}-{shard}/migrations', '{replica}')`,
+        `ENGINE = ReplicatedMergeTree('/clickhouse/{installation}/{cluster}/tables/{shard}/{database}/{table}', '{replica}')`,
         'PARTITION BY toYYYYMM(migrated_at)',
         'ORDER BY (migrated_at)',
       ],
     })
 
-    await this.ch.queryAsync(dbName, migrationTable.toSql())
+    await this.ch.queryAsync(migrationTable.toSql(), {
+      queryOptions: { database: dbName },
+      format: 'TabSeparated',
+    })
   }
 }

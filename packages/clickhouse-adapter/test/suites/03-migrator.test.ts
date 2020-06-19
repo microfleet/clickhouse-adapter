@@ -55,7 +55,7 @@ describe('Migrator', () => {
 
     await migrator.up(migrator.migrateAll(DB_NAME))
 
-    const results = await ch.connection.querying(queries.listMigrations(DB_NAME))
+    const results = await ch.queryAsync(queries.listMigrations(DB_NAME), { format: 'JSON' })
 
     assert(results.data.filter((m: { name: string }) => m.name === '1_event_a').length === 1)
   })

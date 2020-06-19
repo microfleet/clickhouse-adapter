@@ -44,15 +44,16 @@ export class Migrator {
   }
 
   private async saveMigrationResult(dbName: string, migrationName: string): Promise<any> {
-    return this.ch.connection.querying(
-      SqlString.format('INSERT INTO ?? (name) VALUES(?)', [`${dbName}.migrations`, migrationName])
+    return this.ch.queryAsync(
+      SqlString.format('INSERT INTO ?? (name) VALUES(?)', [`${dbName}.migrations`, migrationName]),
+      { format: 'TabSeparated' }
     )
   }
 
   private async isExistsMigration(dbName: string, migrationName: string): Promise<boolean> {
-    const result = await this.ch.connection.querying(
+    const result = await this.ch.queryAsync(
       SqlString.format('SELECT * FROM ?? WHERE name = ?', [`${dbName}.migrations`, migrationName]),
-      { format: 'JSON' }
+      { format: 'JSONCompact' }
     )
     return result.data.length > 0
   }
