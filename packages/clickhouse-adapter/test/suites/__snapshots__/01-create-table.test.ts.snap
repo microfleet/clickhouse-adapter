@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create table create replicated table 1`] = `
+Array [
+  Object {
+    "codec_expression": "",
+    "comment": "",
+    "default_expression": "",
+    "default_type": "",
+    "name": "trackDate",
+    "ttl_expression": "",
+    "type": "Date",
+  },
+  Object {
+    "codec_expression": "",
+    "comment": "",
+    "default_expression": "",
+    "default_type": "",
+    "name": "trackTimestamp",
+    "ttl_expression": "",
+    "type": "DateTime",
+  },
+  Object {
+    "codec_expression": "",
+    "comment": "",
+    "default_expression": "",
+    "default_type": "",
+    "name": "event_type",
+    "ttl_expression": "",
+    "type": "String",
+  },
+]
+`;
+
+exports[`create table create table 1`] = `
+Array [
+  Object {
+    "codec_expression": "",
+    "comment": "",
+    "default_expression": "",
+    "default_type": "",
+    "name": "trackDate",
+    "ttl_expression": "",
+    "type": "Date",
+  },
+  Object {
+    "codec_expression": "",
+    "comment": "",
+    "default_expression": "",
+    "default_type": "",
+    "name": "trackTimestamp",
+    "ttl_expression": "",
+    "type": "DateTime",
+  },
+  Object {
+    "codec_expression": "",
+    "comment": "",
+    "default_expression": "",
+    "default_type": "",
+    "name": "event_type",
+    "ttl_expression": "",
+    "type": "String",
+  },
+]
+`;

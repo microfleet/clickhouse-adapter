@@ -50,7 +50,9 @@ describe('Clickhouse Adapter', () => {
     }
 
     ch.insert(DB_NAME, insertData, async () => {
-      const result = await ch.queryAsync(DB_NAME, 'SELECT * FROM event_a')
+      const result = await ch.queryAsync('SELECT * FROM event_a', {
+        queryOptions: { database: DB_NAME },
+      })
 
       assert(result)
       assert(result.data)

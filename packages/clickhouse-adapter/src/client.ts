@@ -6,20 +6,17 @@ import {
   ClickhouseOptions,
   TableBuilder,
   ClickhouseClientInterface,
+  QueryOptions,
 } from './interfaces'
 
 export class ClickhouseClient implements ClickhouseClientInterface {
   public static readonly defaultOpts: ClickhouseOptions = {
     host: 'clickhouse',
-    dbName: 'default',
-    user: 'default',
-    password: '',
-    format: 'JSON',
   }
 
   public readonly connection: ClickHouse
 
-  public readonly queryAsync: (dbName: string, query: string) => Promise<any>
+  public readonly queryAsync: (query: string, options: QueryOptions) => Promise<any>
 
   constructor(options: ClickhouseOptions) {
     this.connection = new ClickHouse(merge({}, ClickhouseClient.defaultOpts, options))
@@ -28,7 +25,7 @@ export class ClickhouseClient implements ClickhouseClientInterface {
   }
 
   public async createTable(builder: TableBuilder): Promise<any> {
-    return this.connection.querying(builder.toSql(), { format: 'JSONEachRow' })
+    return this.queryAsync(builder.toSql(), { format: 'TabSeparated' })
   }
 
   public insert(dbName: string, insertData: InsertData, cb: (err: any, result: any) => void): void {
@@ -47,7 +44,11 @@ export class ClickhouseClient implements ClickhouseClientInterface {
     stream.end()
   }
 
-  public query(dbName: string, query: string, cb: (err: any, result: any) => void): void {
-    this.connection.query(query, { syncParser: true, queryOptions: { database: dbName } }, cb)
+  public query(query: string, options: QueryOptions, cb: (err: any, result: any) => void): void {
+    this.connection.query(
+      query,
+      { syncParser: true, ...options, format: options.format || 'JSONCompact' },
+      cb
+    )
   }
 }

@@ -1,1 +1,1 @@
-export type Formats = 'JSON' | 'JSONEachRow' | 'CSV' | 'TabSeparated'
+export type Formats = 'JSON' | 'JSONCompact' | 'JSONEachRow' | 'CSV' | 'TabSeparated'
