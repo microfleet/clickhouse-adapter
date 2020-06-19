@@ -31,18 +31,7 @@ services:
       - "${PWD}/test/configs/users.xml:/etc/clickhouse-server/users.xml"
       - "${PWD}/test/configs/config_ch_2.xml:/etc/clickhouse-server/conf.d/config.xml"
 
-  clickhouse-adapter:
-    links:
-      - ch1
-      - ch2
-    image: makeomatic/node
-    container_name: clickhouse_adapter
-    volumes:
-      - ${PWD}/test/configs:/configs:ro
-    environment:
-      NODE_ENV: production
-      DEBUG: '*'
-
   tester:
     depends_on:
-      - clickhouse-adapter
+      - ch1
+      - ch2
