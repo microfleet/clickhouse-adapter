@@ -1395,10 +1395,10 @@
     alce "1.x.x"
     yargs "15.1.0"
 
-"@makeomatic/deploy@10.1.4":
-  version "10.1.4"
-  resolved "https://registry.yarnpkg.com/@makeomatic/deploy/-/deploy-10.1.4.tgz#7bdf912509fea8cd2a0f6f0bac362b2adce46fa7"
-  integrity sha512-tzh0/nw0Rm2GS6y6gi5oJv+vOCQ89QaadKwJ6/JPQTgIPU4/15r7zxJueU8nuH0ygZK0qeU0EthSMsvEt/9zUg==
+"@makeomatic/deploy@10.2.1":
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/@makeomatic/deploy/-/deploy-10.2.1.tgz#f549e609d27294419c66a844054836b2c24e51e7"
+  integrity sha512-oFKDhLJJVXYY8jAdPYTxivUFC7JdAK3kzi0q2EMJEkV0Lb6o0SkgpgaAf6XdZathNFY6YG6LnntKgySwzkSYHw==
   dependencies:
     "@commitlint/cli" "^8.3.5"
     bluebird "^3.7.2"
