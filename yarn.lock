@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@apla/clickhouse@1.6.2":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@apla/clickhouse/-/clickhouse-1.6.2.tgz#4062ba81dff9c2599ce8b3e9f79102a0356213df"
-  integrity sha512-hMoxoUYHRncS/WnpL+7xfV219q6JrCo4tTOSywwNvjsVT/bPs9oc68oxecLAIP3dMAxLahYVoPDdnPxN08xgMg==
+"@apla/clickhouse@1.6.3":
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@apla/clickhouse/-/clickhouse-1.6.3.tgz#c718c2102cc89cf33f9cbe54062092e021fddcec"
+  integrity sha512-pSpwVWRvgP/R41T3BYY3TaKitM0JSB25ic3ifRNy9SJ/WJt/3LtKCwL5/viCWMTgeLtOK3T9n7wNyZSv78m0IQ==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.8.3"
