@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "version": "0.2.4",
+  "version": "0.2.5",
   "scripts": {
     "compile": "tsc -p tsconfig.build.json",
     "test": "yarn test:unit && yarn test:e2e",
