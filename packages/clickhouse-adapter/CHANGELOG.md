@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.2.2...@microfleet/clickhouse-adapter@0.2.3) (2020-06-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @apla/clickhouse to v1.6.3 ([84e55c8](https://github.com/microfleet/clickhouse-adapter/commit/84e55c82841f62312b3c4e5221ffe2c44f778eb4))
+
+
+
+
+
 ## [0.2.2](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.2.1...@microfleet/clickhouse-adapter@0.2.2) (2020-06-24)
 
 **Note:** Version bump only for package @microfleet/clickhouse-adapter
