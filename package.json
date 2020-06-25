@@ -23,7 +23,7 @@
     "client"
   ],
   "devDependencies": {
-    "@makeomatic/deploy": "10.2.1",
+    "@makeomatic/deploy": "10.3.0",
     "@types/bluebird": "3.5.32",
     "@types/jest": "25.2.3",
     "@types/lodash": "4.14.156",
