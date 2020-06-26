@@ -41,7 +41,7 @@
     "husky": "4.2.5",
     "jest": "26.1.0",
     "lerna": "3.22.1",
-    "prettier": "1.19.1",
+    "prettier": "2.0.5",
     "prettier-eslint": "9.0.2",
     "rimraf": "3.0.2",
     "ts-jest": "26.1.1",
