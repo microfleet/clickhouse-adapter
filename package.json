@@ -25,7 +25,7 @@
   "devDependencies": {
     "@makeomatic/deploy": "10.3.0",
     "@types/bluebird": "3.5.32",
-    "@types/jest": "26.0.3",
+    "@types/jest": "26.0.4",
     "@types/lodash": "4.14.157",
     "@types/node": "13.13.12",
     "@typescript-eslint/eslint-plugin": "3.5.0",
