@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.2.7...@microfleet/clickhouse-adapter@0.3.0) (2020-07-30)
+
+
+### Features
+
+* query options ([6894419](https://github.com/microfleet/clickhouse-adapter/commit/6894419611fff823e2757657f8c5088609fe45df))
+
+
+
+
+
 ## [0.2.7](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.2.6...@microfleet/clickhouse-adapter@0.2.7) (2020-07-22)
 
 **Note:** Version bump only for package @microfleet/clickhouse-adapter
