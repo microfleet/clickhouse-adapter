@@ -28,11 +28,23 @@ export class ClickhouseClient implements ClickhouseClientInterface {
     return this.queryAsync(builder.toSql(), { format: 'TabSeparated' })
   }
 
-  public insert(dbName: string, insertData: InsertData, cb: (err: any, result: any) => void): void {
+  public insert(dbName: string, insertData: InsertData, cb: (err: any, result: any) => void): void
+  public insert(
+    dbName: string,
+    insertData: InsertData,
+    options: QueryOptions,
+    cb: (err: any, result: any) => void
+  ): void
+  public insert(dbName: string, insertData: InsertData, arg1: any, arg2?: any): void {
+    const queryOptions: QueryOptions = typeof arg1 === 'object' ? arg1 : {}
     const stream = this.connection.query(
       insertData.query(),
-      { format: 'JSONEachRow', queryOptions: { database: dbName } },
-      cb
+      {
+        ...queryOptions,
+        format: queryOptions.format || 'JSONEachRow',
+        queryOptions: { database: dbName },
+      },
+      typeof arg1 === 'function' ? arg1 : arg2
     )
 
     const data = insertData.data()
