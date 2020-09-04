@@ -9,9 +9,25 @@ describe('Clickhouse Adapter', () => {
   const ch = new ClickhouseClient({ host: 'ch1', dbName: DB_NAME })
   const systemMigrator = new SystemMigrator(ch)
 
+  const now = moment()
+  const insertData: InsertData = {
+    query: () => {
+      return 'INSERT INTO event_a'
+    },
+    data: () => {
+      return [
+        {
+          trackDate: moment(now).format('YYYY-MM-DD'),
+          trackTimestamp: moment(now).format('YYYY-MM-DD HH:mm:ss'),
+          eventType: 'type_a',
+        },
+      ]
+    },
+  }
+
   beforeAll(() => systemMigrator.up(DB_NAME))
 
-  it('query data', async (done: jest.DoneCallback) => {
+  beforeAll(async () => {
     const migrator = new Migrator(ch)
 
     migrator.addMigration({
@@ -32,23 +48,9 @@ describe('Clickhouse Adapter', () => {
     })
 
     await migrator.up(migrator.migrateAll(DB_NAME))
+  })
 
-    const now = moment()
-    const insertData: InsertData = {
-      query: () => {
-        return 'INSERT INTO event_a'
-      },
-      data: () => {
-        return [
-          {
-            trackDate: moment(now).format('YYYY-MM-DD'),
-            trackTimestamp: moment(now).format('YYYY-MM-DD HH:mm:ss'),
-            eventType: 'type_a',
-          },
-        ]
-      },
-    }
-
+  it('query data', async (done: jest.DoneCallback) => {
     ch.insert(DB_NAME, insertData, async () => {
       const result = await ch.queryAsync('SELECT * FROM event_a', {
         queryOptions: { database: DB_NAME },
@@ -57,6 +59,25 @@ describe('Clickhouse Adapter', () => {
       assert(result)
       assert(result.data)
       assert(result.data.length)
+      done()
+    })
+  })
+
+  it('query data as stream', async (done: jest.DoneCallback) => {
+    ch.insert(DB_NAME, insertData, async () => {
+      const stream = ch.queryStream('SELECT * FROM event_a', {
+        syncParser: false,
+        queryOptions: { database: DB_NAME },
+      })
+
+      const rows = []
+      for await (const row of stream) {
+        rows.push(row)
+      }
+
+      assert(rows.length === 2)
+      assert.ok(stream.supplemental)
+      assert(stream.supplemental.rows === 2)
       done()
     })
   })

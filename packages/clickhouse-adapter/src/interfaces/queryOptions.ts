@@ -14,4 +14,5 @@ export interface QueryOptions {
   readonly queryOptions?: any
   readonly readonly?: boolean
   readonly requestOptions?: RequestOptions
+  readonly syncParser?: boolean
 }

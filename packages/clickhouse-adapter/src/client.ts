@@ -7,6 +7,7 @@ import {
   TableBuilder,
   ClickhouseClientInterface,
   QueryOptions,
+  QueryStream,
 } from './interfaces'
 
 export class ClickhouseClient implements ClickhouseClientInterface {
@@ -56,11 +57,19 @@ export class ClickhouseClient implements ClickhouseClientInterface {
     stream.end()
   }
 
-  public query(query: string, options: QueryOptions, cb: (err: any, result: any) => void): void {
+  public query(query: string, options?: QueryOptions, cb?: (err: any, result: any) => void): void {
     this.connection.query(
       query,
-      { syncParser: true, ...options, format: options.format || 'JSONCompact' },
+      { syncParser: true, ...options, format: options.format ?? 'JSONCompact' },
       cb
     )
+  }
+
+  public queryStream(
+    query: string,
+    options?: QueryOptions,
+    cb?: (err: any, result: any) => void
+  ): QueryStream {
+    return this.connection.query(query, { ...options, format: options.format ?? 'JSONCompact' }, cb)
   }
 }
