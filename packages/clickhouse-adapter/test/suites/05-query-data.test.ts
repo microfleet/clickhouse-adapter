@@ -1,9 +1,11 @@
 import assert from 'assert'
 import moment from 'moment'
+
 import { Migrator, ClickhouseClient, SystemMigrator, TableMaker } from '../../src'
 import { InsertData } from '../../src/interfaces'
 
 const DB_NAME = 'db_test'
+const TABLE_NAME = 'test_query_data'
 
 describe('Clickhouse Adapter', () => {
   const ch = new ClickhouseClient({ host: 'ch1', dbName: DB_NAME })
@@ -12,7 +14,7 @@ describe('Clickhouse Adapter', () => {
   const now = moment()
   const insertData: InsertData = {
     query: () => {
-      return 'INSERT INTO event_a'
+      return `INSERT INTO ${TABLE_NAME}`
     },
     data: () => {
       return [
@@ -25,16 +27,18 @@ describe('Clickhouse Adapter', () => {
     },
   }
 
-  beforeAll(() => systemMigrator.up(DB_NAME))
+  beforeAll(async () => {
+    await systemMigrator.up(DB_NAME)
+  })
 
   beforeAll(async () => {
     const migrator = new Migrator(ch)
 
     migrator.addMigration({
-      name: '1_event_a',
+      name: `1_${TABLE_NAME}`,
       async up(clickhouseClient: ClickhouseClient): Promise<boolean> {
         await clickhouseClient.createTable(
-          new TableMaker(DB_NAME, 'event_a', null, {
+          new TableMaker(DB_NAME, TABLE_NAME, `'{cluster}'`, {
             columnDefinitions: [
               { name: 'trackDate', type: 'Date' },
               { name: 'trackTimestamp', type: 'DateTime' },
@@ -50,24 +54,30 @@ describe('Clickhouse Adapter', () => {
     await migrator.up(migrator.migrateAll(DB_NAME))
   })
 
-  it('query data', async (done: jest.DoneCallback) => {
-    ch.insert(DB_NAME, insertData, async () => {
-      const result = await ch.queryAsync('SELECT * FROM event_a', {
+  beforeAll((done: jest.DoneCallback) => {
+    ch.insert(DB_NAME, insertData, (err) => {
+      if (err) return done.fail(err)
+      done()
+    })
+  })
+
+  describe('query data with QueryOptions', () => {
+    const query = `SELECT * from ${TABLE_NAME}`
+
+    it('simple', async () => {
+      const result = await ch.queryAsync(query, {
         queryOptions: { database: DB_NAME },
       })
 
       assert(result)
       assert(result.data)
       assert(result.data.length)
-      done()
     })
-  })
 
-  it('query data as stream', async (done: jest.DoneCallback) => {
-    ch.insert(DB_NAME, insertData, async () => {
-      const stream = ch.queryStream('SELECT * FROM event_a', {
-        syncParser: false,
+    it('query data as stream', async () => {
+      const stream = ch.queryStream(query, {
         queryOptions: { database: DB_NAME },
+        format: 'JSON',
       })
 
       const rows = []
@@ -75,10 +85,33 @@ describe('Clickhouse Adapter', () => {
         rows.push(row)
       }
 
-      assert(rows.length === 2)
+      assert(rows.length === 1)
       assert.ok(stream.supplemental)
-      assert(stream.supplemental.rows === 2)
-      done()
+      assert(stream.supplemental.rows === 1)
+    })
+  })
+
+  describe('query data without QueryOptions', () => {
+    const query = `SELECT * from ${TABLE_NAME}`
+
+    it('simple', async () => {
+      const result = await ch.queryAsync(query)
+      assert(result)
+      assert(result.data)
+      assert(result.data.length)
+    })
+
+    it('stream', async () => {
+      const stream = ch.queryStream(query)
+
+      const rows = []
+      for await (const row of stream) {
+        rows.push(row)
+      }
+
+      assert(rows.length === 1)
+      assert.ok(stream.supplemental)
+      assert(stream.supplemental.rows === 1)
     })
   })
 })
