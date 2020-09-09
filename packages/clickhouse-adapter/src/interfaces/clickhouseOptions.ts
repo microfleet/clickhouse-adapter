@@ -1,17 +1,12 @@
 import { RequestOptions } from 'http'
 import { Formats } from '../types'
+import { ClickhouseSettings } from './clickhouseSettings'
 
-export interface ClickhouseOptions {
-  readonly host: string
-  readonly user?: string
-  readonly password?: string
-  readonly dbName?: string
-  readonly path?: string
-  readonly port?: number
-  readonly protocol?: 'https:' | 'http:'
+export interface Options extends RequestOptions {
   readonly dataObjects?: boolean
   readonly format?: Formats
-  readonly queryOptions?: any
+  readonly omitFormat?: boolean
+  readonly queryOptions?: ClickhouseSettings
   readonly readonly?: boolean
-  readonly requestOptions?: RequestOptions
+  readonly syncParser?: boolean
 }

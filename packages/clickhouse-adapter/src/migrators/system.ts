@@ -12,7 +12,7 @@ export class SystemMigrator {
   }
 
   public async up(dbName: string): Promise<void> {
-    await this.ch.queryAsync(createDb(dbName), {
+    await this.ch.connection.querying(createDb(dbName), {
       format: 'TabSeparated',
     })
 
