@@ -30,7 +30,7 @@ export class ClickhouseClient implements ClickhouseClientInterface {
     this.options = merge({}, ClickhouseClient.defaultOpts, options)
     this.database = dbName
 
-    this.connection = new ClickHouse(options)
+    this.connection = new ClickHouse(this.options)
 
     this.queryAsync = Promise.promisify(this.query, { context: this })
   }
