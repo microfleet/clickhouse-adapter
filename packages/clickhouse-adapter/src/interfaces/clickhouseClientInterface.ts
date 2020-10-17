@@ -1,7 +1,9 @@
 import ClickHouse from '@apla/clickhouse'
 import { TableBuilder } from './tableBuilder'
 import { InsertData } from './insertData'
-import { QueryOptions } from './queryOptions'
+import { ClickhouseSettings } from './clickhouseSettings'
+
+export type Callback = (err: Error | undefined, res: any) => void
 
 export interface ClickhouseClientInterface {
   connection: ClickHouse
@@ -10,7 +12,7 @@ export interface ClickhouseClientInterface {
   insert(
     dbName: string,
     insertData: InsertData,
-    options: QueryOptions,
+    options: ClickhouseSettings,
     cb: (err: any, result: any) => void
   ): void
   insert(dbName: string, insertData: InsertData, arg1: any, arg2: any): void

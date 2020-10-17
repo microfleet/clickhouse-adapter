@@ -31,7 +31,7 @@ describe('create table', () => {
       host: 'ch1',
     })
 
-    await client.connection.querying('CREATE DATABASE IF NOT EXISTS db_test')
+    await client.connection.querying(`CREATE DATABASE IF NOT EXISTS db_test on cluster '{cluster}'`)
 
     await client.createTable(
       new TableMaker('db_test', 'test_replicated_table', `'{cluster}'`, {
