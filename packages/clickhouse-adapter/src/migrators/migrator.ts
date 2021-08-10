@@ -53,8 +53,9 @@ export class Migrator {
   private async isExistsMigration(dbName: string, migrationName: string): Promise<boolean> {
     const result = await this.ch.queryAsync(
       SqlString.format('SELECT * FROM ?? WHERE name = ?', [`${dbName}.migrations`, migrationName]),
-      { format: 'JSONCompact' }
+      { format: 'JSONCompact', syncParser: true }
     )
-    return result.data.length > 0
+
+    return result.rows > 0
   }
 }

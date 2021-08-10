@@ -11,7 +11,7 @@ describe('Clickhouse Adapter', () => {
 
   beforeAll(() => systemMigrator.up(DB_NAME))
 
-  it('insert single row', async (done: jest.DoneCallback) => {
+  it('insert single row', async () => {
     const migrator = new Migrator(ch)
 
     migrator.addMigration({
@@ -49,21 +49,17 @@ describe('Clickhouse Adapter', () => {
       },
     }
 
-    ch.insert(DB_NAME, insertData, () => {
-      ch.connection.query(
-        'SELECT * FROM event_a',
-        { syncParser: true, queryOptions: { database: DB_NAME } },
-        (_: any, result: any) => {
-          assert(result)
-          assert(result.data)
-          assert(result.data.length)
-          done()
-        }
-      )
-    })
+    await ch.insertAsync(DB_NAME, insertData)
+    const result = await ch.queryAsync(
+      'SELECT * FROM event_a',
+      { syncParser: true, queryOptions: { database: DB_NAME } })
+    
+    assert(result)
+    assert(result.data)
+    assert(result.data.length)
   })
 
-  it('insert tsv', async (done: jest.DoneCallback) => {
+  it('insert tsv', async () => {
     const migrator = new Migrator(ch)
 
     migrator.addMigration({
@@ -109,17 +105,13 @@ describe('Clickhouse Adapter', () => {
       },
     }
 
-    ch.insert(DB_NAME, insertData, { format: 'TabSeparated' }, () => {
-      ch.connection.query(
-        'SELECT * FROM event_b',
-        { syncParser: true, queryOptions: { database: DB_NAME } },
-        (_: any, result: any) => {
-          assert(result)
-          assert(result.data)
-          assert(result.data.length)
-          done()
-        }
-      )
-    })
+    await ch.insertAsync(DB_NAME, insertData, { format: 'TabSeparated' })
+    const result = await ch.queryAsync(
+      'SELECT * FROM event_b',
+      { syncParser: true, queryOptions: { database: DB_NAME } })
+
+    assert(result)
+    assert(result.data)
+    assert(result.data.length)
   })
 })

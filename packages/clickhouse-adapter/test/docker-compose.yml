@@ -4,6 +4,7 @@ services:
   zookeeper:
     image: zookeeper
     ports:
+
       - "2181:2181"
       - "2182:2182"
 
@@ -17,7 +18,7 @@ services:
     volumes:
       - "${PWD}/test/configs/include_from.xml:/etc/clickhouse-server/include_from.xml"
       - "${PWD}/test/configs/users.xml:/etc/clickhouse-server/users.xml"
-      - "${PWD}/test/configs/config_ch_1.xml:/etc/clickhouse-server/conf.d/config.xml"
+      - "${PWD}/test/configs/config_ch_1.xml:/etc/clickhouse-server/config.d/extra_config.xml"
 
   ch2:
     image: yandex/clickhouse-server
@@ -29,7 +30,7 @@ services:
     volumes:
       - "${PWD}/test/configs/include_from.xml:/etc/clickhouse-server/include_from.xml"
       - "${PWD}/test/configs/users.xml:/etc/clickhouse-server/users.xml"
-      - "${PWD}/test/configs/config_ch_2.xml:/etc/clickhouse-server/conf.d/config.xml"
+      - "${PWD}/test/configs/config_ch_2.xml:/etc/clickhouse-server/config.d/extra_config.xml"
 
   tester:
     depends_on:

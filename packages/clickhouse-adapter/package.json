@@ -18,15 +18,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@apla/clickhouse": "1.6.3",
+    "@apla/clickhouse": "1.6.4",
     "bluebird": "3.7.2",
-    "lodash": "4.17.19",
-    "moment": "2.27.0",
+    "lodash": "4.17.21",
+    "moment": "2.29.1",
     "sqlstring": "2.3.2"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.159",
-    "@types/sqlstring": "2.2.1"
+    "@types/lodash": "4.14.172",
+    "@types/sqlstring": "2.3.0"
   },
   "publishConfig": {
     "access": "public"

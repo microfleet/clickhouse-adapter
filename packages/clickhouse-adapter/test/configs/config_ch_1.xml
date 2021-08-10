@@ -4,7 +4,7 @@
   <default_profile>default</default_profile>
   <default_database>default</default_database>
   <include_from>/etc/clickhouse-server/include_from.xml</include_from>
-  <remote_servers incl="clickhouse_remote_servers" />
+  <remote_servers incl="clickhouse_remote_servers" replace="replace" />
   <zookeeper incl="zookeeper-servers" optional="true" />
   <macros>
     <installation>test</installation>

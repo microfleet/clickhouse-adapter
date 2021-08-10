@@ -8,15 +8,11 @@ const ON_CLUSTER = 'ON CLUSTER'
 
 export class TableMaker implements TableBuilder {
   private readonly tableName: string
-
   private readonly dbName: string
-
   private readonly clusterName: string | null
 
   private head: string[] = []
-
   private columnDefinitions: string[] = []
-
   private tableOptions: string[] = []
 
   constructor(
@@ -35,8 +31,11 @@ export class TableMaker implements TableBuilder {
       this.setupCluster(this.clusterName)
     }
 
-    this.defineColumns(spec?.columnDefinitions)
-    this.tableOptions = spec?.tableOptions || []
+    if (spec) {
+      this.defineColumns(spec.columnDefinitions)
+    }
+
+    this.tableOptions = spec ? spec.tableOptions : []
   }
 
   public columnDefinition(name: string, type: ColumnTypes, options: string[] = []): this {
@@ -63,7 +62,7 @@ export class TableMaker implements TableBuilder {
     this.head.push(`${ON_CLUSTER} ${cluster}`.trim())
   }
 
-  private defineColumns(columnDefinitions: Column[] | undefined): void {
-    columnDefinitions?.forEach((c: Column) => this.columnDefinition(c.name, c.type, c.options))
+  private defineColumns(columnDefinitions: Column[]): void {
+    columnDefinitions.forEach((c: Column) => this.columnDefinition(c.name, c.type, c.options))
   }
 }

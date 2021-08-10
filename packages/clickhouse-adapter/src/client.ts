@@ -1,42 +1,37 @@
+import Clickhouse from '@apla/clickhouse'
 import ClickHouse from '@apla/clickhouse'
 import { Promise } from 'bluebird'
 import { merge } from 'lodash'
+import { Writable, Duplex } from 'stream'
 import {
   InsertData,
-  ClickhouseOptions,
   TableBuilder,
-  ClickhouseClientInterface,
-  QueryOptions,
 } from './interfaces'
 
-export class ClickhouseClient implements ClickhouseClientInterface {
-  public static readonly defaultOpts: ClickhouseOptions = {
+export class ClickhouseClient {
+  public static readonly defaultOpts: Clickhouse.Options = {
     host: 'clickhouse',
   }
 
   public readonly connection: ClickHouse
 
-  public readonly queryAsync: (query: string, options: QueryOptions) => Promise<any>
+  public readonly queryAsync: (query: string, options: ClickHouse.QueryOptions) => Promise<any>
+  public readonly insertAsync: (dbName: string, insertData: InsertData, options?: ClickHouse.QueryOptions) => Promise<any>
 
-  constructor(options: ClickhouseOptions) {
+  constructor(options: Clickhouse.Options) {
     this.connection = new ClickHouse(merge({}, ClickhouseClient.defaultOpts, options))
-
     this.queryAsync = Promise.promisify(this.query, { context: this })
+    this.insertAsync = Promise.promisify(this.insert, { context: this })
   }
 
   public async createTable(builder: TableBuilder): Promise<any> {
     return this.queryAsync(builder.toSql(), { format: 'TabSeparated' })
   }
 
-  public insert(dbName: string, insertData: InsertData, cb: (err: any, result: any) => void): void
-  public insert(
-    dbName: string,
-    insertData: InsertData,
-    options: QueryOptions,
-    cb: (err: any, result: any) => void
-  ): void
-  public insert(dbName: string, insertData: InsertData, arg1: any, arg2?: any): void {
-    const queryOptions: QueryOptions = typeof arg1 === 'object' ? arg1 : {}
+  public insert<T = any>(dbName: string, insertData: InsertData, cb: ClickHouse.Callback<T>): void
+  public insert<T = any>(dbName: string, insertData: InsertData, options: ClickHouse.QueryOptions, cb: ClickHouse.Callback<T>): void
+  public insert<T = any>(dbName: string, insertData: InsertData, arg1: ClickHouse.QueryOptions | ClickHouse.Callback<T>, arg2?: ClickHouse.Callback<T>): void {
+    const queryOptions: ClickHouse.QueryOptions = typeof arg1 === 'object' ? arg1 : Object.create(null)
     const stream = this.connection.query(
       insertData.query(),
       {
@@ -56,8 +51,10 @@ export class ClickhouseClient implements ClickhouseClientInterface {
     stream.end()
   }
 
-  public query(query: string, options: QueryOptions, cb: (err: any, result: any) => void): void {
-    this.connection.query(
+  public query(query: string, options: ClickHouse.QueryOptions): Duplex
+  public query<T = any>(query: string, options: ClickHouse.QueryOptions, cb: ClickHouse.Callback<T>): Writable
+  public query<T = any>(query: string, options: ClickHouse.QueryOptions, cb?: ClickHouse.Callback<T>): Writable | Duplex {
+    return this.connection.query(
       query,
       { syncParser: true, ...options, format: options.format || 'JSONCompact' },
       cb

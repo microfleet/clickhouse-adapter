@@ -11,7 +11,7 @@ describe('Clickhouse Adapter', () => {
 
   beforeAll(() => systemMigrator.up(DB_NAME))
 
-  it('query data', async (done: jest.DoneCallback) => {
+  it('query data', async () => {
     const migrator = new Migrator(ch)
 
     migrator.addMigration({
@@ -49,15 +49,22 @@ describe('Clickhouse Adapter', () => {
       },
     }
 
-    ch.insert(DB_NAME, insertData, async () => {
-      const result = await ch.queryAsync('SELECT * FROM event_a', {
-        queryOptions: { database: DB_NAME },
-      })
+    await new Promise<void>((resolve, reject) => {
+      ch.insert(DB_NAME, insertData, async () => {
+        try {
+          const result = await ch.queryAsync('SELECT * FROM event_a', {
+            queryOptions: { database: DB_NAME },
+            syncParser: true,
+          })
 
-      assert(result)
-      assert(result.data)
-      assert(result.data.length)
-      done()
+          assert(result)
+          assert(result.data)
+          assert(result.data.length)
+          resolve()
+        } catch (e) {
+          reject(e)
+        }
+      })
     })
   })
 })
