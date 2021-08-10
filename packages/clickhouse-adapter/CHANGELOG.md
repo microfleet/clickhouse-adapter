@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.3.1...@microfleet/clickhouse-adapter@0.4.0) (2021-08-10)
+
+
+### Features
+
+* upgrade to latest adapter ([19a6a96](https://github.com/microfleet/clickhouse-adapter/commit/19a6a9632f6674b7be1a9d2171aa7cee808fe11a))
+
+
+
+
+
 ## [0.3.1](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.3.0...@microfleet/clickhouse-adapter@0.3.1) (2020-08-18)
 
 **Note:** Version bump only for package @microfleet/clickhouse-adapter
