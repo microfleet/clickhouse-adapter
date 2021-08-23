@@ -21,7 +21,7 @@ export class Migrator {
   }
 
   public migrateAll(dbName: string) {
-    return (migrator: Migrator) => {
+    return (migrator: Migrator): Promise<Migration[]> => {
       const migrations = migrator.migrationList()
 
       return Promise.each(migrations, (migration: Migration) => {
