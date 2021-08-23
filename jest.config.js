@@ -5,7 +5,7 @@ module.exports = {
   collectCoverageFrom: ['packages/**/src/**/*.{ts,tsx,js,jsx}', 'packages/**/!src/**/*.d.ts'],
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.json',
     },
   },
   moduleNameMapper: {

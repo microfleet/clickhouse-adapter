@@ -27,7 +27,7 @@ declare module '@apla/clickhouse' {
             pathname?: string
             protocol?: 'http:' | 'https:'
             dataObjects?: boolean
-            format?: 'JSON' | 'JSONCompact' | 'JSONEachRow' | 'CSV' | 'TabSeparated'
+            format?: 'TabSeparated' | 'TabSeparatedRaw' | 'TabSeparatedWithNames' | 'TabSeparatedWithNamesAndTypes' | 'Template' | 'TemplateIgnoreSpaces' | 'CSV' | 'CSVWithNames' | 'CustomSeparated' | 'Values' | 'Vertical' | 'VerticalRaw' | 'JSON' | 'JSONAsString' | 'JSONString' | 'JSONCompact' | 'JSONCompactString' | 'JSONEachRow' | 'JSONEachRowWithProgress' | 'JSONStringsEachRow' | 'JSONStringsEachRowWithProgress' | 'JSONCompactEachRow' | 'JSONCompactEachRowWithNamesAndTypes' | 'JSONCompactStringEachRow' | 'JSONCompactStringEachRowWithNamesAndTypes' | 'TSKV' | 'Pretty' | 'PrettyCompact' | 'PrettyCompactMonoBlock' | 'PrettyNoEscapes' | 'PrettySpace' | 'Protobuf' | 'ProtobufSingle' | 'Avro' | 'AvroConfluent' | 'Parquet' | 'Arrow' | 'ArrowStream' | 'ORC' | 'RowBinary' | 'RowBinaryWithNamesAndTypes' | 'Native' | 'Null' | 'XML' | 'CapnProto' | 'LineAsString' | 'Regexp' | 'RawBLOB'
             queryOptions?: Record<string, string | number>
             readonly?: boolean
             syncParser?: boolean
