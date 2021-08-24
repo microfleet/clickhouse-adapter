@@ -34,7 +34,7 @@
     "cross-env": "7.0.3",
     "cz-lerna-changelog": "2.0.3",
     "eslint": "7.32.0",
-    "eslint-config-airbnb-typescript": "13.0.0",
+    "eslint-config-airbnb-typescript": "14.0.0",
     "eslint-config-makeomatic": "^5.0.4",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.24.1",
