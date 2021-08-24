@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.4.1...@microfleet/clickhouse-adapter@0.4.2) (2021-08-24)
+
+
+### Bug Fixes
+
+* include more supported formats ([539545f](https://github.com/microfleet/clickhouse-adapter/commit/539545f637b96d9a56fa09efffec75cc41ad7277))
+
+
+
+
+
 ## [0.4.1](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.4.0...@microfleet/clickhouse-adapter@0.4.1) (2021-08-10)
 
 
