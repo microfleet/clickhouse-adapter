@@ -22,7 +22,7 @@ clickhouse-adapter was created to work with Yandex.ClickHouse. The package is a 
     dbName: 'default',
     user: 'default',
     password: '',
-    format: 'JSON',
+    format: 'JSONEachRow',
   }
 ```
 
