@@ -56,7 +56,7 @@ jobs:
           github.event.pull_request.base.ref == 'master'
 
       # Install
-      - run: yarn
+      - run: yarn install --frozen-lockfile
         if: >
           github.event.pull_request.merged == true &&
           github.event.pull_request.base.ref == 'master'
