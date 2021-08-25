@@ -37,7 +37,7 @@
     "eslint-config-airbnb-typescript": "13.0.0",
     "eslint-config-makeomatic": "^5.0.4",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-import": "2.24.1",
+    "eslint-plugin-import": "2.24.2",
     "eslint-plugin-prettier": "3.4.1",
     "husky": "4.3.0",
     "jest": "27.0.6",
