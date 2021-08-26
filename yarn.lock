@@ -1418,14 +1418,15 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@makeomatic/clickhouse@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@makeomatic/clickhouse/-/clickhouse-1.7.0.tgz#8bdaabc071ac662e327d2d4238447c03c5ba4771"
-  integrity sha512-Xz5ZxcnZCw1EU8rJCNpJFIVw2WDExgf4IPIJjSUAQAwnMr5ZIECdC8hd8Uy1C3RvOPNcDrrRZr28sQz2ZRbRnQ==
+"@makeomatic/clickhouse@1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@makeomatic/clickhouse/-/clickhouse-1.7.1.tgz#0ff96d23d6507ce744d5bc354fca42193539b445"
+  integrity sha512-LdYg04WTsrsyJrZzwIWvrbCjfoZxuX7WfRK6ufYzuD5ZIxgANzkn9Xq2Mm6hu4OhUKon02ySZ2s1mpdFSl7wAw==
   dependencies:
     binary-split "^1.0.5"
     bl "^5.0.0"
     lodash.defaults "^4.2.0"
+    split2 "^3.2.2"
     undici "^4.4.7"
 
 "@makeomatic/confidence@6.0.3":
@@ -8492,7 +8493,7 @@ split-on-first@^1.0.0:
   resolved "https://registry.yarnpkg.com/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
   integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
 
-split2@^3.0.0:
+split2@^3.0.0, split2@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/split2/-/split2-3.2.2.tgz#bf2cf2a37d838312c249c89206fd7a17dd12365f"
   integrity sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==
