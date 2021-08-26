@@ -1,35 +1,70 @@
 name: Checks
 
-on:
-  pull_request:
-    paths:
-      - '**'
+on: [push]
 
 jobs:
   run:
-    name: Run
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '12'
 
-      - name: Install
-        run: yarn install
+      - run: yarn install --frozen-lockfil
+      - run: yarn typecheck
+      - run: yarn lint
+      - run: yarn test
 
-      - name: TypeCheck
-        run: |
-          yarn typecheck
+  run:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: [Test]
+    if: ${{ github.ref == 'refs/heads/master' }}
 
-      - name: Lint
-        run: |
-          yarn lint
+    steps:
+      # Checkout
+      - uses: actions/checkout@v2
+        with:
+          ref: 'master'
+          fetch-depth: 0
 
-      - name: Test
-        run: |
-          yarn test
+      # Configure GPG
+      - run: |
+          mkdir -p ~/.gnupg/
+          printf "$GPG_SIGNING_KEY" | base64 --decode > ~/.gnupg/private.key
+          gpg --import ~/.gnupg/private.key
+        env:
+          GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+
+      # Configure Git
+      - run: |
+          git config --local user.email $GIT_EMAIL
+          git config --local user.name $GIT_USER
+          git config --local user.signingkey $GPG_KEY_ID
+          git config --local commit.gpgsign true
+        env:
+          GIT_USER: ${{ secrets.GIT_USER }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID}}
+
+      # NPM Registry
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+          scope: ${{ secrets.SCOPE }}
+
+      # Install
+      - run: yarn install --frozen-lockfile
+      - run: yarn lerna version --yes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      # Publish to NPM
+      - run: yarn lerna publish from-package --no-verify-access --yes
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
