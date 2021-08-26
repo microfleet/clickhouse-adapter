@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.4.2...@microfleet/clickhouse-adapter@0.5.0) (2021-08-26)
+
+
+### Features
+
+* upgrade clickhouse adapter ([50912fc](https://github.com/microfleet/clickhouse-adapter/commit/50912fcddc180089a7c2a336ee8ec26c53e09aa7))
+
+
+### BREAKING CHANGES
+
+* requires issuing .close() as internally uses a pool to connect to CH, multiple other changes, which arent breaking
+
+
+
+
+
 ## [0.4.2](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.4.1...@microfleet/clickhouse-adapter@0.4.2) (2021-08-24)
 
 
