@@ -19,7 +19,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@apla/clickhouse": "1.6.4",
+    "@makeomatic/clickhouse": "1.7.0",
     "bluebird": "3.7.2",
     "lodash": "4.17.21",
     "moment": "2.29.1",

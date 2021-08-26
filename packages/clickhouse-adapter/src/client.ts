@@ -1,5 +1,4 @@
-import Clickhouse from '@apla/clickhouse'
-import ClickHouse from '@apla/clickhouse'
+import ClickHouse from '@makeomatic/clickhouse'
 import { Promise } from 'bluebird'
 import { merge } from 'lodash'
 import { Writable, Duplex } from 'stream'
@@ -9,7 +8,7 @@ import {
 } from './interfaces'
 
 export class ClickhouseClient {
-  public static readonly defaultOpts: Clickhouse.Options = {
+  public static readonly defaultOpts: ClickHouse.Options = {
     host: 'clickhouse',
   }
 
@@ -18,7 +17,7 @@ export class ClickhouseClient {
   public readonly queryAsync: (query: string, options: ClickHouse.QueryOptions) => Promise<any>
   public readonly insertAsync: (dbName: string, insertData: InsertData, options?: ClickHouse.QueryOptions) => Promise<any>
 
-  constructor(options: Clickhouse.Options) {
+  constructor(options: ClickHouse.Options) {
     this.connection = new ClickHouse(merge({}, ClickhouseClient.defaultOpts, options))
     this.queryAsync = Promise.promisify(this.query, { context: this })
     this.insertAsync = Promise.promisify(this.insert, { context: this })
@@ -26,6 +25,10 @@ export class ClickhouseClient {
 
   public async createTable(builder: TableBuilder): Promise<any> {
     return this.queryAsync(builder.toSql(), { format: 'TabSeparated' })
+  }
+
+  public async close(): Promise<void> {
+    await this.connection.close()
   }
 
   public insert<T = any>(dbName: string, insertData: InsertData, cb: ClickHouse.Callback<T>): void

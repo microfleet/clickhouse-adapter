@@ -1,10 +1,12 @@
-declare module '@apla/clickhouse' {
+declare module '@makeomatic/clickhouse' {
     import { Duplex, Writable } from 'stream'
     import { RequestOptions } from 'http'
+    import type { Pool } from 'undici'
     
     class Clickhouse {
         constructor(options: Clickhouse.Options)
         
+        close(): Promise<void>
         query(query: string): Duplex
         query(query: string, options: Clickhouse.QueryOptions): Duplex
         query<T = any>(query: string, callback: Clickhouse.Callback<T>): Writable
@@ -32,9 +34,10 @@ declare module '@apla/clickhouse' {
             readonly?: boolean
             syncParser?: boolean
             requestOptions?: RequestOptions
+            poolOptions?: Pool.Options
         }
 
-        export type QueryOptions = Omit<Options, 'host' | 'port' | 'user' | 'password' | 'path' | 'pathname' | 'protocol'>
+        export type QueryOptions = Omit<Options, 'host' | 'port' | 'user' | 'password' | 'path' | 'pathname' | 'protocol' | 'poolOptions'>
     }
 
     export = Clickhouse
