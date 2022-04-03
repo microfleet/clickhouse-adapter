@@ -1,6 +1,6 @@
 {
   "repo": "makeomatic/node",
-  "node": "14.17",
+  "node": "16",
   "nycCoverage": false,
   "coverage": false,
   "test_framework": "jest --verbose -i -b -c ../../jest.config.js --coverageDirectory <coverageDirectory>",

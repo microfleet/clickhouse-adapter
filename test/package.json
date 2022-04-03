@@ -4,6 +4,6 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "moment": "2.29.1"
+    "moment": "2.29.2"
   }
 }
