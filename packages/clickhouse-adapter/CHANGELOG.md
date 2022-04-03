@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.5.1...@microfleet/clickhouse-adapter@0.5.2) (2022-04-03)
+
+
+### Bug Fixes
+
+* update deps, add debug module ([f1d8325](https://github.com/microfleet/clickhouse-adapter/commit/f1d83257cbc578bf2b6bfabc1288318b054e15d6))
+
+
+
+
+
 ## [0.5.1](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/clickhouse-adapter@0.5.0...@microfleet/clickhouse-adapter@0.5.1) (2021-08-26)
 
 

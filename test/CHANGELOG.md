@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/root-test@0.2.0...@microfleet/root-test@0.2.1) (2022-04-03)
+
+
+### Bug Fixes
+
+* update deps, add debug module ([f1d8325](https://github.com/microfleet/clickhouse-adapter/commit/f1d83257cbc578bf2b6bfabc1288318b054e15d6))
+
+
+
+
+
 # [0.2.0](https://github.com/microfleet/clickhouse-adapter/compare/@microfleet/root-test@0.1.0...@microfleet/root-test@0.2.0) (2021-08-10)
 
 
