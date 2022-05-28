@@ -27,7 +27,7 @@
     "sqlstring": "2.3.3"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.7",
+    "@types/debug": "4.1.7",
     "@types/lodash": "4.14.181",
     "@types/sqlstring": "2.3.0"
   },
