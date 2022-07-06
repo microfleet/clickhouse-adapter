@@ -23,7 +23,7 @@
     "bluebird": "3.7.2",
     "debug": "^4.3.4",
     "lodash": "4.17.21",
-    "moment": "2.29.2",
+    "moment": "2.29.4",
     "sqlstring": "2.3.3"
   },
   "devDependencies": {
