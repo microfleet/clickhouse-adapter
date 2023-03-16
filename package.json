@@ -27,7 +27,7 @@
   ],
   "devDependencies": {
     "@makeomatic/deploy": "12.6.3",
-    "@types/bluebird": "3.5.36",
+    "@types/bluebird": "3.5.38",
     "@types/jest": "27.4.1",
     "@types/lodash": "4.14.181",
     "@types/node": "17.0.23",
