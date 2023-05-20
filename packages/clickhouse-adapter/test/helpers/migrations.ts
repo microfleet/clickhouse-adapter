@@ -22,7 +22,7 @@ export const migrations: Migration[] = [
             { name: 'trackTimestamp', type: 'DateTime' },
             { name: 'event_type', type: 'String' },
           ],
-          tableOptions: ['ENGINE = MergeTree(trackDate, (trackTimestamp, event_type), 8192)'],
+          tableOptions: ['ENGINE = MergeTree() ORDER BY (trackTimestamp, event_type) PARTITION BY (trackDate) SETTINGS index_granularity=8192'],
         })
       )
       return true
@@ -38,7 +38,7 @@ export const migrations: Migration[] = [
             { name: 'trackTimestamp', type: 'DateTime' },
             { name: 'event_type', type: 'String' },
           ],
-          tableOptions: ['ENGINE = MergeTree(trackDate, (trackTimestamp, event_type), 8192)'],
+          tableOptions: ['ENGINE = MergeTree() ORDER BY (trackTimestamp, event_type) PARTITION BY (trackDate) SETTINGS index_granularity=8192'],
         })
       )
       return true
@@ -54,7 +54,7 @@ export const migrations: Migration[] = [
             { name: 'trackTimestamp', type: 'DateTime' },
             { name: 'event_type', type: 'String' },
           ],
-          tableOptions: ['ENGINE = MergeTree(trackDate, (trackTimestamp, event_type), 8192)'],
+          tableOptions: ['ENGINE = MergeTree() ORDER BY (trackTimestamp, event_type) PARTITION BY (trackDate) SETTINGS index_granularity=8192'],
         })
       )
       return true

@@ -24,7 +24,7 @@ describe('Clickhouse Adapter', () => {
               { name: 'trackTimestamp', type: 'DateTime' },
               { name: 'eventType', type: 'String' },
             ],
-            tableOptions: ['ENGINE = MergeTree(trackDate, (trackTimestamp, eventType), 8192)'],
+            tableOptions: ['ENGINE = MergeTree() ORDER BY (trackTimestamp, eventType) PARTITION BY (trackDate) SETTINGS index_granularity=8192'],
           })
         )
         return true

@@ -15,7 +15,7 @@ describe('create table', () => {
           { name: 'trackTimestamp', type: 'DateTime' },
           { name: 'event_type', type: 'String' },
         ],
-        tableOptions: ['ENGINE = MergeTree(trackDate, (event_type), 8192)'],
+        tableOptions: ['ENGINE = MergeTree() ORDER BY trackDate PARTITION BY (event_type) SETTINGS index_granularity=8192'],
       })
     )
 

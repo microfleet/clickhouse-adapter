@@ -1,8 +1,7 @@
-{
+module.exports = {
   "repo": "makeomatic/node",
-  "node": "16",
+  "node": "18",
   "nycCoverage": false,
-  "coverage": false,
   "test_framework": "jest --verbose -i -b -c ../../jest.config.js --coverageDirectory <coverageDirectory>",
   "tests": "../clickhouse-adapter/test/suites/**/*.ts",
   "auto_compose": true,

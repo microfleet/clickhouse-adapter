@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`create table create replicated table 1`] = `
-Array [
-  Object {
+[
+  {
     "codec_expression": "",
     "comment": "",
     "default_expression": "",
@@ -11,7 +11,7 @@ Array [
     "ttl_expression": "",
     "type": "Date",
   },
-  Object {
+  {
     "codec_expression": "",
     "comment": "",
     "default_expression": "",
@@ -20,7 +20,7 @@ Array [
     "ttl_expression": "",
     "type": "DateTime",
   },
-  Object {
+  {
     "codec_expression": "",
     "comment": "",
     "default_expression": "",
@@ -33,8 +33,8 @@ Array [
 `;
 
 exports[`create table create table 1`] = `
-Array [
-  Object {
+[
+  {
     "codec_expression": "",
     "comment": "",
     "default_expression": "",
@@ -43,7 +43,7 @@ Array [
     "ttl_expression": "",
     "type": "Date",
   },
-  Object {
+  {
     "codec_expression": "",
     "comment": "",
     "default_expression": "",
@@ -52,7 +52,7 @@ Array [
     "ttl_expression": "",
     "type": "DateTime",
   },
-  Object {
+  {
     "codec_expression": "",
     "comment": "",
     "default_expression": "",
