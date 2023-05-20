@@ -1,7 +1,7 @@
 {
   "name": "@microfleet/root-test",
   "main": "index.ts",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "dependencies": {
     "moment": "2.29.4"

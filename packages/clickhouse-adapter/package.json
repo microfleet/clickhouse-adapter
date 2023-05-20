@@ -9,7 +9,7 @@
     "dist",
     "types"
   ],
-  "version": "0.5.3",
+  "version": "0.5.4",
   "scripts": {
     "compile": "tsc -p tsconfig.build.json",
     "test": "yarn test:unit && yarn test:e2e",
