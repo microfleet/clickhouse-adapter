@@ -36,7 +36,7 @@
     "commitizen": "4.3.0",
     "cross-env": "7.0.3",
     "cz-lerna-changelog": "2.0.3",
-    "eslint": "8.41.0",
+    "eslint": "8.57.0",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-makeomatic": "^5.1.0",
     "eslint-config-prettier": "8.8.0",
